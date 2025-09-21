@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Día de la Flor Amarilla 💛</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to top, #fff8e1, #ffe082);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    /* Caja de regalo */
+    .gift-box {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      background: #ffeb3b;
+      border: 3px solid #fbc02d;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin: 0 auto;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    /* Tapa */
+    .lid {
+      position: absolute;
+      top: -55px;
+      left: -5px;
+      width: 170px;
+      height: 55px;
+      background: #fdd835;
+      border: 3px solid #fbc02d;
+      border-radius: 12px 12px 0 0;
+      transition: transform 0.6s ease-in-out;
+      transform-origin: bottom center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Cinta vertical */
+    .ribbon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 28px;
+      height: 100%;
+      background: #f57f17;
+      transform: translateX(-50%);
+    }
+
+    /* Cinta horizontal */
+    .ribbon-horizontal {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 28px;
+      background: #f57f17;
+      transform: translateY(-50%);
+    }
+
+    /* Moño */
+    .bow {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .bow .loop {
+      width: 40px;
+      height: 40px;
+      background: #f57f17;
+      border-radius: 50%;
+      box-shadow: inset -4px -4px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Flores */
+    .flowers {
+      display: none;
+      font-size: 3rem;
+      margin-top: 20px;
+      animation: float 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* Mensaje */
+    .message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #6d4c41;
+      font-weight: bold;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* Animación de la tapa */
+    .open .lid {
+      transform: rotateX(150deg);
+    }
+
+    /* Música oculta */
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="gift-box" id="gift">
+      <div class="lid"></div>
+      <div class="ribbon"></div>
+      <div class="ribbon-horizontal"></div>
+      <div class="bow">
+        <div class="loop"></div>
+        <div class="loop"></div>
+      </div>
+    </div>
+    <div class="flowers" id="flowers">🌻💛💐🌻💛</div>
+    <div class="message" id="message">
+      Feliz Día de la Flor Amarilla, Bebé 💛<br>
+      Eres una mujer increíble, con la que me gustaría compartir muchas cosas en la vida.
+    </div>
+  </div>
+
+  <!-- Música instrumental libre -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_eb85c21f3f.mp3?filename=romantic-piano-ambient-11063.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const gift = document.getElementById('gift');
+    const flowers = document.getElementById('flowers');
+    const message = document.getElementById('message');
+    const music = document.getElementById('music');
+
+    let isOpen = false;
+
+    gift.addEventListener('click', () => {
+      if (!isOpen) {
+        // abrir
+        gift.classList.add('open');
+        flowers.style.display = 'block';
+        message.style.display = 'block';
+        music.currentTime = 0;
+        music.play();
+      } else {
+        // cerrar
+        gift.classList.remove('open');
+        flowers.style.display = 'none';
+        message.style.display = 'none';
+        music.pause();
+        music.currentTime = 0;
+      }
+      isOpen = !isOpen;
+    });
+  </script>
+</body>
+</html>
